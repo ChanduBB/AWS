@@ -1,0 +1,32 @@
+Installing Ansible on ubuntu.20.0
+
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt update
+sudo apt install ansible
+********configuration******
+sudo nano /etc/ansible/hosts
+setup ---> [servers]
+server1 ansible_host=203.0.113.111
+server2 ansible_host=203.0.113.112
+server3 ansible_host=203.0.113.113
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+ansible-inventory --list -y
+
+ansible all -m ping -u root
+ansible all -a "df -h" -u root
+ansible all -m apt -a "name=vim state=latest" -u root
+ansible server1:server2 -m ping -u root
+
+***********************Ansible on amazon linux or RHREL-OS ***************
+
+Launch Amazon Linux (no need to install ansible s/w in/on hosts)
+yum install wget -y
+wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum install epel-release-latest-7.noarch.rpm -y
+sudo yum update -y
+sudo yum install git python python-devel python-pip openssl ansible -y
+ansible --version
+

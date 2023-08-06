@@ -1,0 +1,23 @@
+openssl genpkey -algorithm RSA -out private.key
+openssl req -new -key private.key -out certificate.csr
+openssl x509 -req -days 365 -in certificate.csr -signkey private.key -out certificate.crt
+
+
+openssl req -x509 -newkey rsa:4096 -keyout private.key -out certificate.crt -days 365
+
+
+openssl enc -aes-256-cbc -salt -in plaintext.txt -out encrypted.txt
+openssl enc -aes-256-cbc -d -in encrypted.txt -out decrypted.txt
+
+
+openssl pkcs12 -export -out certificate.pfx -inkey private.key -in certificate.crt -certfile ca.crt
+
+
+openssl s_client -connect example.com:443
+
+
+openssl dgst -sha256 file.txt
+
+
+openssl dgst -sha256 -sign private.key -out signature.sha256 file.txt
+openssl dgst -sha256 -verify public.key -signature signature.sha256 file.txt

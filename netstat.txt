@@ -1,0 +1,51 @@
+------------Netstat-------
+
+Introduction
+
+The netstat command is a CLI tool for network statistics. It gives an overview of network activities and displays which ports are open or have established connections. The netstat tool is essential for discovering network problems.
+
+netstat
+
+--->To list all ports and connections regardless of their state or protocol, use:
+netstat -a
+
+-->> List all TCP ports by running:
+netstat -at
+
+----->> List all UDP ports with: 
+netstat -au
+
+----->> To return a list of only listening ports for all protocols, use:
+netstat -l
+
+-----> List all listening TCP ports with:
+netstat -lt
+
+--->>> Return only listening UDP ports by running:
+netstat -lu
+
+--->> To list UNIX listening ports, use:
+netstat -lx
+
+---->>Display statistics for all ports regardless of the protocol with:
+netstat -s
+
+-->>>List statistics for TCP ports only with:
+netstat -st
+
+--->> To list statistics for UDP ports only, use: 
+netstat -su
+
+--->>> To see transactions of MTU, receiving and transferring packets in the kernel interface table, use:
+netstat -i
+
+-->> Find all listening programs with:
+netstat -lp
+
+---->Display group membership for IPv6/IPv4 with:
+netstat -g
+
+--->>using a particular port number, run:
+netstat -an | grep ':80'
+
+------>
