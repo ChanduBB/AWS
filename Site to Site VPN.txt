@@ -1,0 +1,23 @@
+Goto Client account create 2 ec2-instances name them as 1.openswan 2.server and add those into default VPC and in a single subnet --> SG- allow ICMP-IPV4 all traffic.
+select Openswan instance click actions --> netwoeking--> change source/destinations--> mark as stop.
+Goto AWS (cloud) account, create a custom VPC and launch an ec2-instance keep it in Custome VPC and in a public sebnet, add SG same as above and launch instance.
+Goto VPC (AWS-Cloud)--> create Customer Gateway(CGW) --> give name --> select static -->provide public ip of openswan ec2 then click ceate CGW.
+Goto Virtual Private Gateway --> craete --> give name --> click  OK, Then select VPG and click actions --> attach to vpc. (attach to the vpc with which you have ceated as a custome VPC.
+Goto site to site VPN connection --> create --> give name--> select the VPG which we have created in the above step --> choose customer Gateway I'D --> change Routing to "static" --> Here in the static IP prefixes add 2 vpc's IP addresses one is client vpc other one is AWS cloud (our side) after that in the Local ipc4 give customer's VPC ip, and Remote ipv4 give Awscloud VPC ip. clock on create.
+Goto RouteTable--> select the route which is associated with your VPC --> route propagation -->edit--> check the VPG. save.
+Goto S2S vpn --> choose S2S vpn --> download configuration--> choose Openswan --> download.
+You will get a configuration file.
+login into openswan server and execute some commands to setup tunnels. --> cmd1 --> vi /etc/sysctl.conf --> add the 3 net text of first line of config file in this sysctl.conf file and close.
+To apply those changes run -->  <sysctl -p>
+install openswan --> <yum install openswan -y>
+conn Tunnel1 --> edit it by removing "auth=esp" and in the place of "Local Network give Customer's VPC IP" under that in Remote Network give Awscloud(our) VPC IP.
+goto vi /etc/ipsec.d/aws.conf  --> copy from conn to peer. and paste in this file.
+open vi /etc/ipsec.d/aws.secrets --> copy paste the line which is under this file, EX: 4.208.22.4 3.92.116.188: PSK "IYBttgqKLfPZ2LpB76N3uHxtWr1ZTcQy" and save.
+Restart the service --> systemctl start ipsec and --> systemctl status ipsec --> status should be active and running. 
+Goto the AWS-Cloud and choose S2S vpn --> Tunnel details --> check whether it is up or down and it should be up. 
+copy private ip of Awscloud's server and try to PING. 
+
+
+
+
+ 

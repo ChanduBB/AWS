@@ -1,0 +1,12 @@
+Goto aws and Create 2 instances --> give SG - anywhere and allow all traffic.
+The SG should have NFS client port. If you want to mount EFS on multiple servers then every server's Secutity group should be added in the EFS.
+Goto EFS --> choose create filesystem --> give a name --> choose VPC --> click on customize --> click next --> provide the Security Groups which has NFS client port -->click next and create EFS.
+Choose EFS --> click on view details --> click attach --> choose Mount via IP --> copy the NFS client ip.
+Login to the server and install <sudo yum install -y amazon-efs-utils> --> create an efs directory in Mnt directory. <mkdir /mnt/efs> --> execute EFS-ip command mentioning the /mnt/efs path.
+ex: sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 172.31.44.69:/ /mnt/efs 
+check whether EFS mounted or not with these commands, <dh -h> <lsblk>
+Open <vi /etc/fstab> and insert a line <172.31.44.69:/ /mnt/efs nfs4 vers=4.1,rsize=1048576,wsize=1048576,hard,noresvport,timeo=60,retrans=2,_netdev 0 0> 
+in the baove line add your "EFS-ip" after that execute a cmd to mount permanently <mount -a> then Reboot the server and check with <df -h> command, EFS should be there.
+
+command to use in /ets/fstab when mountingwith an ip <172.31.44.69:/ /mnt/efs nfs4 vers=4.1,rsize=1048576,wsize=1048576,hard,noresvport,timeo=60,retrans=2,_netdev 0 0>
+

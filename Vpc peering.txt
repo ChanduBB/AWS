@@ -1,0 +1,15 @@
+Goto aws and create 2 vpc's
+goto vpc --> give vpc name --> give CIDR blocks - i'm giving CIDR range as <10.1.0.0/24> and create vpc.
+create 2nd vpc by following same steps as above and give CIDR range as <10.2.0.0/24>.
+Goto subnets --> create subnet--> select a vpc in wich you want to create subnet --> give subnet name --> select AZ, here im selecting AZ 1a --> devide the 10.1.0.0/24 CIDR into 2 subnets. < 10.1.0.0/25 and 10.1.0.128/25> and give <10.1.0.0/25>CIDR fo rfirst subnet then create another in differenrt AZb and give CIDR range as <10.1.0.128/25>
+Goto Internet gateway and click create -->give a name --> after IGW created select the IGW click attach and attach to a desired VPC.
+Goto route tables --> give name and select VPC.
+Goto route table and edit it by giving destinations whether local IG, IGW or NATGW. After that again goto route table --> click subnet associations--> select desired subnets which you want to attch this route table with those subnets and click save.
+Goto peering connection --> give a name --> select <Requester VPC ID>,--> select <Accepter VPC ID> click on create .
+Create a route table select VPC 1 ID and give 2 VPC CIDRs EX: <10.1.0.0/24> <-- first VPC CIDR and <10.2.0.0/24> <-- 2nd VPC CIDR, once you give the destinantoin of 2nd vpc CIDR mention Peering Connection as target then add subnets into that route table.
+Create another Route table same as above and select VPC 2 and follow above route steps.
+Create 2 instances. first instance with VPC-1 and second instance with VPC-2
+Make sure to allow <All ICMP - IPv4> in security Groups. 
+
+ 
+

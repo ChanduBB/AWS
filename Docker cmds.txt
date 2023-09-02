@@ -1,0 +1,51 @@
+docker container ls -a
+docker ps
+
+docker ps -a
+docker images
+
+docker container run --name <name> <docker-image>
+
+docker run -it --name chandu5 -p 8080:80 chanduboddula/nginximg:1.1.1.1
+
+docker container run -d <image-name>
+
+docker container rm <container id or name> # this is for the stopped or exited
+
+docker container rm -f <container id or name> # this works for container in running as well as stopped
+
+docker container rm -f $(docker container ls -q)
+
+docker container rm -f $(docker container ls -a -q)
+docker container start <container id or name>
+docker container stop <container id or name>
+docker container attach <container-name/id
+
+docker container logs <container-name>
+docker container run -p <port on host>:<container port> <image>
+docker container run -d -p 32660:80 --name webserver nginx
+
+docker container run -P <image>
+
+docker container exec <container-name> <command>
+
+docker container exec -it <container> <terminal>
+
+docker container run -it <image-name> <terminal> 
+
+docker run -v /path/to/host/file:/path/to/container/file IMAGE_NAME
+
+docker run -v /path/to/host/directory:/path/to/container/directory IMAGE_NAME
+
+docker run -v chandu:/usr/share/nginx/html 6efc10a0510f
+
+To create a volume use this scripts :
+
+docker volume create \
+  --driver local \
+  --opt type=none \
+  --opt device=/path/to/my/volume \
+  my_volume
+  
+The file should be in the build contex  --> means where the Dockerfile is located in that folder only the files which we wanted to mount should be in that same folder.
+Build contex means the path where you are building image using a Dockerfile.

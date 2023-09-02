@@ -1,0 +1,28 @@
+Creating and mounting EBS volume onto linux machine:
+
+1. First create a linux EC2 instance, by default you will get some range of EBS volume based on which server you have choosed. I have launched an ec2 instance which contains 8GB storage by default.
+2. To create a new EBS volume, goto --> Volumes --> select volume type, size and AZ according to the requirement, for example select 20GB size and click on create volume.
+3. we can see a new volume created in volumes and it will be in a available state not "in-use". to mount the volume to an instance we need to attatch that volume to a particular ec2 instance which you want to attach.
+4. To attach a volume goto --> volumes and select volume --> click on --> actions and attach volume, select the instance which you want to attach, choose device path thenclick Attach. Now you will see the volume state in-use.
+5. Connect to linux server with the instance, then type <df-h> to check the disk space and memory usage mount paths, you wont see the new volume attached to the instance. 
+6. type <lsblk> to check Disk, drives and partitions. you can see the new volume here.
+7. type <file -s /dev/xvdf> --> here xvdf is the name of new volume. if you get "data" after executing this command then you have to setup file system for the block device
+8. To create a file sysytem execute a command --> mkfs -t xfs /dev/xvdf 
+9. execute <file -s /dev/xvdf> command again to check the file system 
+10. Create two directories in root --> <mkdir -p /volume/newvolume>
+11. Mount the volume to the newely created directories --> <mount /dev/xvdf /volume/newvolume> xvdf is the volume name and dev is te path where xvdf located and we are mounting that volume from that place to newely created directories.
+12. Now check whether the volume added to the instance or not --> <df -h> you will see that volume and mounting point is /volume/newvolume without restarting the instance.
+13. For unmounting use this command --> <umount /dev/xvdf> here, xvdf is device name.
+*******Permanent way to mount*******
+Open <vi /etc/fstab> file and add </dev/xvdf        /volume/newvolume      xfs     defaults,nofail 0 0>  Here, /dev/xvdf is device or volume name and /volume/newvolume is mount point(dest).
+Execute a command to get mounted <mount -a>. To check mounted or not <df -h>
+								 
+<df -h>  <mkfs -t xfs /dev/xvdf>  <file -s /dev/xvdf> <mkdir -p /newdir/newdir11>  <lsblk>  <mount /dev/xvdf /newdir/newdir11/>  <umount /dev/xvdf>
+
+To checck the mounted columes and path --->> cat /etc/exports
+*******Windows EBS ******
+1. Launch a windows machoine and choose server goto --> actions --> select security --> click on get windows password then add your pem key, click on decrypy password then you will be getting a username and password copy that. create a EBS in aws and attach to windows machine.
+2. Run a command in local window --> mstsc --> give th ewindows credentials to connect. 
+3. once enter into the windows server Run a command <diskmgmt.msc> then you will be see 2 disks disk 0 and disk 1 
+4. click on disk 1 which is a new volume and bring it online and again click on disk 1 click on initial Diskclick OK.
+5.click beside disk 1 click next next next now you can give a name to your new volume then clikc finish. goto files and check.
