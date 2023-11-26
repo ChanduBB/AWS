@@ -1,0 +1,53 @@
+Linux-user-ner-expire:
+-------------------------
+[Wednesday 8:53 PM] Boddula Chandu
+sudo passwd -x -1 <username> 
+sudo chage -E -1 <usernmae> 
+chage -l <username>
+
+To unlock the linux user:
+-----------------------------
+faillock --user <username> --reset
+
+Commands to convert to base64:
+-------------------------------------
+To encode:  echo "password" | base64
+To decode: echo "cGFzc3dvcmQ=" | base64 --decode
+
+To export an nfs volume from one server to another server :
+-------------------------------------------------------------
+mount -t nfs -o vers="4.0" 172.30.156.39 /ibm/b2bi/shared  /path/to/newserver
+172.30.156.39 ---.> ip of the server which has volume.
+
+To check exact ram utilization:
+-----------------------------------
+free -t | awk 'NR == 2 {print "Current Memory Utilization is : " $3/$2*100}'
+---------------------
+curl -v telnet://mapper.gslb.fedex.com:25
+
+To check the disk size:
+find / -size +500M
+
+Linux-cheat_sheet:
+https://bit.ly/3FtcTgw
+---------------------------------
+it will be useful whenever we face issue's in mounting xfs disk
+[root@ip-100-0-4-5 ~]# sudo mount -t xfs -o nouuid  /dev/nvme3n1p4 /opt/test
+
+scp -i pemkey ./filename root@172.98.27.99:/path/to
+
+
+-------------------------------------
+
+Network:
+===============
+ping
+curl
+traceroute
+nslookup
+telnet
+
+
+
+
+

@@ -1,0 +1,4 @@
+sudo passwd -x -1 <username> 
+sudo chage -E -1 <usernmae> 
+chage -l <username>
+Use this to never expire password for linux user!!!!!!!!!!!!!!!
