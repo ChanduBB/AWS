@@ -1,0 +1,36 @@
+[12/16 2:50 PM] Hariprasad Pidathala
+{
+
+    "Version": "2012-10-17",
+
+    "Statement": {
+
+        "Effect": "Deny",
+
+        "Action": "*",
+
+        "Resource": "*",
+
+        "Condition": {
+
+            "NotIpAddress": {
+
+                "aws:SourceIp": [
+
+                    "175.101.4.18/32"
+
+                ]
+
+            },
+
+            "Bool": {
+
+                "aws:ViaAWSService": "false"
+
+            }
+
+        }
+
+    }
+
+}
