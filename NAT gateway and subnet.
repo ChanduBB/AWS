@@ -1,0 +1,4 @@
+You have to create a NAT gateway in Public subnet only.
+You have to attach that NAt gateway route in Private subnet route table.
+ex: go to private subnet, edit routes and add NATgateway with 0.0.0.0 traffic.
+then your ec2 instances which are private can communicate with internet.
