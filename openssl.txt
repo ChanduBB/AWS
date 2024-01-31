@@ -21,3 +21,14 @@ openssl dgst -sha256 file.txt
 
 openssl dgst -sha256 -sign private.key -out signature.sha256 file.txt
 openssl dgst -sha256 -verify public.key -signature signature.sha256 file.txt
+To check P12 file bit size:====
+openssl pkcs12 -in certificate.p12 -nocerts -nodes -out private.key
+openssl rsa -in private.key -noout -text | grep "Private-Key" -A 4
+=======================================
+openssl pkcs12 -export -out certificate.p12 -inkey tls.key -in tls.crt -name "YourCertificateName"
+=============================
+importing 3072 bit:
+openssl genpkey -algorithm RSA -out private-3072.key -pkeyopt rsa_keygen_bits:3072
+openssl pkcs8 -topk8 -inform PEM -outform PEM -in private-3072.key -out private-3072-pkcs8.key -nocrypt
+openssl rsa -in private-3072-pkcs8.key -noout -text | grep "Private-Key" -A 4
+
