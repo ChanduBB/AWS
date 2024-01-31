@@ -31,4 +31,7 @@ importing 3072 bit:
 openssl genpkey -algorithm RSA -out private-3072.key -pkeyopt rsa_keygen_bits:3072
 openssl pkcs8 -topk8 -inform PEM -outform PEM -in private-3072.key -out private-3072-pkcs8.key -nocrypt
 openssl rsa -in private-3072-pkcs8.key -noout -text | grep "Private-Key" -A 4
+===========================================
+Generate a new RSA private key with the desired key size:
+openssl genpkey -algorithm RSA -out myprivate.key -pkeyopt rsa_keygen_bits:3072
 
