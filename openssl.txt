@@ -35,3 +35,10 @@ openssl rsa -in private-3072-pkcs8.key -noout -text | grep "Private-Key" -A 4
 Generate a new RSA private key with the desired key size:
 openssl genpkey -algorithm RSA -out myprivate.key -pkeyopt rsa_keygen_bits:3072
 
+===========================================================
+openssl genrsa -out pem.key 2048
+openssl req -new -key pem.key -out pem.csr -subj "/CN=pem.b2bi-ey.com"
+openssl x509 -req -days 365 -in pem.csr -signkey pem.key -out pem.crt
+openssl pkcs12 -export -out pem.pfx -inkey pem.key -in pem.crt -passout pass:Expl0re
+keytool -importkeystore -srckeystore pem.pfx -srcstorepass Expl0re -srcalias 1 -srcstoretype pkcs12 -destkeystore pem.jks -deststorepass Expl0re -destalias pem.com -deststoretype JKS
+
