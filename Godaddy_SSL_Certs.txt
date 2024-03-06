@@ -1,0 +1,12 @@
+GoDaddy SSl Certs:
+==========================
+
+standard ssl and managed ssl
+
+Standard SSl certs will only supports domain.
+ex: amazon.com
+
+Managed ssl certs will supports dumain and its subdomain.
+ex: wishlist.amazon.com
+
+We have to create A record with subdomain nama under actual domain with the IPv4 address.
