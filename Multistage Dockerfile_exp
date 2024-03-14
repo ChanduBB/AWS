@@ -1,0 +1,21 @@
+# Code template to get you started For Multistage Dockerfile
+# Build stage with development tools
+FROM python:3.9-slim-buster AS build
+
+WORKDIR /app
+
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
+
+COPY . .
+
+CMD ["python", "app.py"]
+
+# Final stage with minimal image
+FROM alpine AS prod
+
+COPY --from=build /app /app
+
+WORKDIR /app
+
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
