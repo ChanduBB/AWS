@@ -46,6 +46,9 @@ docker volume create \
   --opt type=none \
   --opt device=/path/to/my/volume \
   my_volume
+
+To create a new container from existing container and mapping volume to the new conatiner -->
+docker run -it --name cont2 --privileged=true --volumes-from cont1 myimg:1.1 /bin/bash
   
 The file should be in the build contex  --> means where the Dockerfile is located in that folder only the files which we wanted to mount should be in that same folder.
 Build contex means the path where you are building image using a Dockerfile.
