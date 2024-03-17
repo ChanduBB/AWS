@@ -1,0 +1,23 @@
+AWS cross account access using roles.
+account1 --> chandu
+account2--> bablu
+
+If chandu wants to access bablus account then bablu should create a cross account role by adding chandu's aws 12 Digit account id.
+procedure:
+
+1. create an IAM user in chandu's account and add policies what ever you want to add.
+2. After that go to the user--> permissions--> add inline policy --> effect should be "Allow" , service should be "STS"(Security Token Service)--> select only Assume Role under actions  sessions.
+
+
+
+1. Goto bablu account and create a role by giving chandu's aws account id then add a policy based on your requirement then create a role
+
+2. To goive limited access of another aws acount rather than * (everyone) folow below process:
+3. goto the roles in bablu's account and select role you have created, click on "Trust relations" edit it, in that you can see a line beside aws as mentioned below.
+"AWS" : "arn:aws:iam::564378987654:root"     --->> edit this as below.
+
+"AWS" : "arn:aws:iam::564378987654:user/demouser"   ---> this specifies, which user should can access the account, in this context demouser.
+
+
+4. Signin to the IAM Demouser and click on switch role, give bablus account id and rolename you have created in bablu's account.
+ 
