@@ -1,0 +1,14 @@
+Vpc: Subnets, routetables, IGW, NAT gateway, voc endpoint, NACL, VPC peering.
+Ec2: instances, elastic ip, security Groups, Loadbalancer, Target groups, Autoscaling, Life cycle manage, Ami, EBS, Snapshots.
+S3
+SNS
+EFS
+Workspaces
+Aws Inspector
+Aws Guard Duty
+Aws Backup
+Aws backup strategy:
+Backup Frequency
+Backup Retention
+RPO Recovery Point Obejective
+RTO Recovery time Obejective
