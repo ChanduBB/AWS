@@ -1,6 +1,7 @@
 Vpc: Subnets, routetables, IGW, NAT gateway, voc endpoint, NACL, VPC peering, Site to Sote VPN
 Ec2: instances, elastic ip, security Groups, Loadbalancer, Target groups, Autoscaling, Life cycle manage, Ami, EBS, Snapshots.
 S3
+Aws DataSync
 SNS
 EFS
 Workspaces
