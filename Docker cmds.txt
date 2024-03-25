@@ -52,4 +52,7 @@ docker run -it --name cont2 --privileged=true --volumes-from cont1 myimg:1.1 /bi
 To save an image as tar file ---->>   docker save -o newfile.tar imageid:tag
   
 The file should be in the build contex  --> means where the Dockerfile is located in that folder only the files which we wanted to mount should be in that same folder.
-Build contex means the path where you are building image using a Dockerfile.
+Build contex means the path where you are building image using a Dockerfile
+
+docker run -it --name cont2 -v /var/lib/docker/volumes/myvol:/opt d7413dc260c0 /bin/bash
+expl: cont2 --> new cont name, d7413dc260c0 --> existing imageID or killed container imageId
