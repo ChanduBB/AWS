@@ -1,0 +1,5 @@
+If you create NAT gateway in and attach it to private subnet and create a VM in that private subnet with elastic or public ip and try to access with that public ip, you wont be able to.
+If you have a private IP address you will be able to connect to that private instance.
+If you doesnt allow all trafic you can still download packages.
+If you want to connect to pri VM which doesnt have public IP through JPserver you must allow Jpserver private IP in private Vm.
+If you have private instance and want to access Internet then, either you should have NAT Gateway or Pulblic IP for instance. any one of them are enough.
